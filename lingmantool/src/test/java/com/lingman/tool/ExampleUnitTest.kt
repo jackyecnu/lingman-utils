@@ -1,4 +1,4 @@
-package com.lingman.lingmantool
+package com.lingman.tool
 
 import org.junit.Test
 
