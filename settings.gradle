@@ -1,0 +1,3 @@
+rootProject.name = "MyLingmanTool"
+include ':app'
+include ':lingmantool'
