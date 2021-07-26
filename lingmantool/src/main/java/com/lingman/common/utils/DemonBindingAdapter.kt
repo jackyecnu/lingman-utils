@@ -21,8 +21,8 @@ import com.lingman.common.R
 
             imageView.load(imageUrl){
                 crossfade(true)
-                placeholder(R.drawable.ic_launcher_background)
-                error(R.drawable.ic_launcher_background)
+                placeholder(R.drawable.demon_placeholder_gray)
+                error(R.drawable.demon_placeholder_gray)
             }
         } else {
             imageView.setBackgroundColor(Color.DKGRAY)
@@ -45,8 +45,8 @@ import com.lingman.common.R
         if (!TextUtils.isEmpty(imageUrl)) {
             imageView.load(imageUrl){
                 crossfade(true)
-                placeholder(R.drawable.ic_launcher_background)
-                error(R.drawable.ic_launcher_background)
+                placeholder(R.drawable.demon_placeholder_gray)
+                error(R.drawable.demon_placeholder_gray)
             }
         } else {
             imageView.setImageResource(imageResource)
