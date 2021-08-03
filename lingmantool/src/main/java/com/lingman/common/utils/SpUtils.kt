@@ -21,7 +21,7 @@ object SpUtils {
     const val FILE_NAME = "share_data"
 
     private val kv: MMKV by lazy {
-        MMKV.defaultMMKV()
+        MMKV.defaultMMKV()!!
     }
 
     init {

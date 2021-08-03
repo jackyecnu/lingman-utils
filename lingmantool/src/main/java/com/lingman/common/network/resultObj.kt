@@ -1,4 +1,4 @@
-package com.lingman.taohupai.ui.common
+package com.lingman.common.network
 
 data class ApiResultObj<T> (
     val code:Int,
