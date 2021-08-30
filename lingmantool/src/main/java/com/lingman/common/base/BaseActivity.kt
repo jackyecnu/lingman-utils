@@ -32,6 +32,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         initClick()
         // 绑定liveData
         initLiveData()
+
     }
 
     override fun onDestroy() {
