@@ -77,6 +77,47 @@ class DemonAppManager private constructor(){
             .forEach { it.finish() }
     }
 
+    /**
+     * 指定的activity实例是否存活
+     * @param activity
+     * *
+     * @return
+     */
+    fun activityInstanceIsLive(activity: Activity): Boolean {
+        if (mActivityList == null) {
+            return false
+        }
+        return mActivityList!!.contains(activity)
+    }
+
+    /**
+     * 关闭所有activity
+     */
+    fun killAll() {
+
+        val iterator = mActivityList!!.iterator()
+        while (iterator.hasNext()) {
+            iterator.next().finish()
+            iterator.remove()
+        }
+    }
+
+
+    /**
+     * 指定的activity class是否存活(一个activity可能有多个实例)
+     * @param activityClass
+     * *
+     * @return
+     */
+    fun activityClassIsLive(activityClass: Class<*>): Boolean {
+        if (mActivityList == null) {
+            return false
+        }
+
+        return mActivityList!!.any {
+            it.javaClass == activityClass
+        }
+    }
 
 
 
