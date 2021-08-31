@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.lingman.common.tool.DemonAppManager
 import com.lingman.common.widget.LoadingDialog
 
 abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
@@ -16,6 +17,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
     lateinit var mBinding: T
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        DemonAppManager.instance.addActivity(this)
         // 在绑定contentview 之前调用
         initDataBeforeContentView()
 
@@ -33,10 +35,12 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         // 绑定liveData
         initLiveData()
 
+
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        DemonAppManager.instance.removeActivity(this)
         mBinding.unbind()
     }
 

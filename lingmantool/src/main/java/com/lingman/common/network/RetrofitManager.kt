@@ -85,31 +85,6 @@ class RetrofitClient{
         }
 
 
-        fun getRetrofitObjectNoRoot(): Retrofit {
-            val mOkClient = OkHttpClient.Builder()
-                .callTimeout(10, TimeUnit.SECONDS)
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(10, TimeUnit.SECONDS)
-                .writeTimeout(10, TimeUnit.SECONDS)
-                .retryOnConnectionFailure(true)
-                .followRedirects(false)
-                .cookieJar(LocalCookieJar())
-                .addInterceptor(HttpHeaderInterceptor())
-                .addInterceptor(HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
-                    override fun log(message: String) {
-                        Log.d(TAG, "log: $message")
-                    }
-
-                }).setLevel(HttpLoggingInterceptor.Level.BODY)).build()
-
-            val repo: IDemonConfig by lazy { GlobalContext.get().get() }
-
-
-            return Retrofit.Builder()
-                .client(mOkClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-        }
 
 
 
