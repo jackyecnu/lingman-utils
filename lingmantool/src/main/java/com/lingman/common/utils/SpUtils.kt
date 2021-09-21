@@ -40,7 +40,7 @@ object SpUtils {
             else -> error("${value?.javaClass?.simpleName} Not Supported By CniaoSpUtils")
         }
 
-        kv.sync()
+       // kv.sync()
     }
 
     fun getBoolean(key: String, defValue: Boolean = false) = kv.getBoolean(key, defValue)
