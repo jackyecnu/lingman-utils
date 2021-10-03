@@ -15,6 +15,6 @@ interface IDemonConfig {
 
     fun GetLoginClass():String
 
-    fun CheckCustomCode():Boolean
+    fun CheckCustomCode(code:Int):Boolean
 
 }

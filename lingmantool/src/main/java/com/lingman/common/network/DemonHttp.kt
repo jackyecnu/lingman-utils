@@ -40,7 +40,7 @@ class DemonHttp {
             final?.invoke()
 
             val cof: IDemonConfig by lazy { GlobalContext.get().get() }
-            if(!cof.CheckCustomCode()) {
+            if(!cof.CheckCustomCode(call.code)) {
                 if (call.code == 1) {
                     emit(call.data)
                 } else if (call.code == 401) {
