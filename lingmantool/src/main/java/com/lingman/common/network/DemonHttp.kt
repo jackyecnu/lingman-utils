@@ -38,28 +38,30 @@ class DemonHttp {
 
             //将结果复制给baseResp
             final?.invoke()
-            if (call.code == 1) {
-                emit(call.data)
-            } else if (call.code == 401) {
-                val cof: IDemonConfig by lazy { GlobalContext.get().get() }
-                cof.MakeLogout()
-                try {
-                    val clz = Class.forName(cof.GetLoginClass())
-                    val intent = Intent(DemonApplication.mContext, clz)
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
-                    DemonApplication.mContext.startActivity(intent)
-                } catch (classNotFoundException: ClassNotFoundException) {
-                    classNotFoundException.printStackTrace()
+
+            val cof: IDemonConfig by lazy { GlobalContext.get().get() }
+            if(!cof.CheckCustomCode()) {
+                if (call.code == 1) {
+                    emit(call.data)
+                } else if (call.code == 401) {
+
+                    cof.MakeLogout()
+                    try {
+                        val clz = Class.forName(cof.GetLoginClass())
+                        val intent = Intent(DemonApplication.mContext, clz)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+                        DemonApplication.mContext.startActivity(intent)
+                    } catch (classNotFoundException: ClassNotFoundException) {
+                        classNotFoundException.printStackTrace()
+                    }
+                } else if (failure == null) {
+                    DemonToast.showShort(call.message)
+                } else {
+                    failure.invoke(call)
                 }
-            } else if (failure == null) {
-                DemonToast.showShort(call.message)
-            } else {
-                failure.invoke(call)
             }
 
         }.catch{
-            var dd = it.message
-
             if (error == null) {
                 DemonToast.showShort("网络异常")
             } else {
